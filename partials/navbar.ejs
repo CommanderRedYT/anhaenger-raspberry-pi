@@ -1,0 +1,31 @@
+<% 
+
+function create_element(display_name, link, classes) {
+    return `
+    <li class="nav-item">
+        <a class="nav-link ${classes}" href="${link}">${display_name}</a>
+    </li>
+    `;
+}
+
+%> 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/img/bobby.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Bobbyanhänger Interface
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <%- create_element('Home', '/', 'nav-link') %>
+                <%- create_element('Setup', '/setup', 'nav-link') %>
+                <%- create_element('Config', '/config', 'nav-link') %>
+            </ul>
+        </div>
+    </div>
+</nav>

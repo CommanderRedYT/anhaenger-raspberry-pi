@@ -1,0 +1,7 @@
+<%- include('../partials/header.ejs', { title: 'Setup', center: true }) %>
+    <h1 id="raspi">Raspberry Pi Config</h1>
+    <%- toHTML(raspi_config, '/api/raspberry/config', 'raspberry_config') %>
+    <hr>
+    <h1 id="esp">ESP32 Config</h1>
+    <%- esp32.config ? toHTML(esp32.config, '/api/esp/config', 'esp32_config') : '<pre>Not available</pre>' %>
+<%- include('../partials/footer.ejs') %>
