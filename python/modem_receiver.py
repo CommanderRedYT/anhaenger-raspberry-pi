@@ -28,7 +28,7 @@ if not ipc_js_port or not ipc_py_port:
     print('config.json is not set up properly')
     sys.exit(1)
 
-ser = serial.Serial('/dev/ttyS0', 115200)
+ser = serial.Serial('/dev/ttyS0', 9600)
 
 class SendToESP:
     def on_post(self, req, resp):
@@ -59,14 +59,18 @@ def main():
     # start thread
     while True:
         try:
-            str_in = ser.readline().decode('utf-8')
+            str_in = ser.readline()
+            print(str_in.hex())
+            str_in = str_in.decode('utf-8')
             if not str_in:
+                print(0)
                 continue
             parsed = None
             try:
                 parsed = json.loads(str_in)
             except:
                 continue
+            print(parsed)
             if not restart_script:
                 requests.post(f'http://localhost:{ipc_js_port}/', json=parsed, timeout=1)
             
@@ -81,6 +85,7 @@ def restart_if_needed():
     while True:
         if restart_script and (restart_script + 1 < time.time()):
             print('restarting')
+            ser.write(b'{"type":"restart", "content":"0"}\n')
             httpd.shutdown()
             sys.exit(0)
         time.sleep(0.5) # without, cpu usage is 100%
@@ -92,7 +97,7 @@ def send_thread(): # send messages to esp with enough delay
             msg = messages.pop(0)
             print(f'sending {msg}')
             ser.write(msg.encode() + b'\n')
-            time.sleep(0.8)
+            time.sleep(0.5)
         time.sleep(0.1)
 
 if __name__ == '__main__':
