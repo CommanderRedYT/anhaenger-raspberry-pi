@@ -1,16 +1,19 @@
 import { FillRainbowAnimation } from './animations/FillRainbow.js';
 import { RainbowAnimation } from './animations/Rainbow.js';
 import ws2812 from 'rpi-ws281x';
+import * as config from './config.js';
 
-let config = {
-    leds: 32,
+let { leds_ledstrip, ledstrip_brightness } = config.getConfig();
+
+let led_config = {
+    leds: leds_ledstrip,
     dma: 10,
     gpio: 18,
-    brightness: 100,
+    brightness: ledstrip_brightness,
     stripType: 'grb'
 };
 
-var leds = new Uint32Array(config.leds);
+var leds = new Uint32Array(leds_ledstrip);
 
 export const animations = {
     FillRainbow: new FillRainbowAnimation(leds),
@@ -20,7 +23,7 @@ export const animations = {
 let currentAnimation = Object.keys(animations)[0];
 
 export const setup = () => {
-    ws2812.configure(config);
+    ws2812.configure(led_config);
     ws2812.render(leds);
 };
 
@@ -56,13 +59,13 @@ export const helpers = {
         }
     },
     setBrightness: (brightness) => {
-        config.brightness = brightness;
-        ws2812.configure(config);
+        led_config.brightness = brightness;
+        ws2812.configure(led_config);
     },
     getBrightness: () => {
-        return config.brightness;
+        return led_config.brightness;
     },
     getLength: () => {
-        return config.leds;
+        return led_config.leds;
     }
 };

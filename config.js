@@ -22,6 +22,7 @@ const defaultConfig = {
     ipc_py_port: 3001,
     ledstrip_interval: 10,
     leds_ledstrip: 30,
+    ledstrip_brightness: 100
 };
 
 export const set = (key, value) => {
