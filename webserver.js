@@ -29,12 +29,12 @@ api.get('/restart', async (req, res) => {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="refresh" content="3;url=/">
+            <meta http-equiv="refresh" content="5;url=/">
             <title>Redirecting...</title>
         </head>
         <body>
             <h1>Restarting server...</h1>
-            <p>You will be redirected in 3 second.</p>
+            <p>You will be redirected in 5 seconds.</p>
             <a href="/">Click here if you are not redirected.</a>
         </body>
         </html>
@@ -82,12 +82,12 @@ esp.post('/config', async (req, res) => {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="refresh" content="3;url=/config#esp">
+            <meta http-equiv="refresh" content="5;url=/config#esp">
             <title>Redirecting...</title>
         </head>
         <body>
             <h1>Restarting server...</h1>
-            <p>You will be redirected in 3 second.</p>
+            <p>You will be redirected in 5 seconds.</p>
             <a href="/config#esp">Click here if you are not redirected.</a>
         </body>
         </html>
@@ -127,7 +127,7 @@ raspberry.post('/config', async (req, res) => {
         </head>
         <body>
             <h1>Restarting server...</h1>
-            <p>You will be redirected in 3 second.</p>
+            <p>You will be redirected in 5 seconds.</p>
             <a href="/config#raspi">Click here if you are not redirected.</a>
         </body>
         </html>

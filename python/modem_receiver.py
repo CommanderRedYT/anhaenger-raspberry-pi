@@ -92,7 +92,7 @@ def send_thread(): # send messages to esp with enough delay
             msg = messages.pop(0)
             print(f'sending {msg}')
             ser.write(msg.encode() + b'\n')
-            time.sleep(0.4)
+            time.sleep(0.8)
         time.sleep(0.1)
 
 if __name__ == '__main__':
